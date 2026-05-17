@@ -4,6 +4,10 @@ function showPage(pageId) {
   }
   
   /* LOGIN */
+
+function dummy(){
+    ///
+}
   function login() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
