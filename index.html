@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Haze Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <div class="gradient-orb orb1"></div>
+    <div class="gradient-orb orb2"></div>
+    <div class="gradient-orb orb3"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <h2>Haze-Analyzer</h2>
+  <ul>
+    <li onclick="showPage('home')">Home</li>
+    <li onclick="showPage('dashboard')">Analyze</li>
+    <li onclick="showPage('about')">About</li>
+    <li onclick="showPage('contact')">Contact</li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <h1>Detect Air Quality Through Vision</h1>
+    <p>Upload or capture images to estimate AQI instantly</p>
+    <button onclick="showPage('login')">Get Started</button>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="page">
+
+  <div class="login-wrapper">
+
+    <!-- LEFT SIDE -->
+    <div class="login-left">
+
+      <h1>Welcome to <span>Haze-Analyzer</span></h1>
+
+      <p>
+        AI-powered visual air quality monitoring system
+        using computer vision and real-time environmental analysis.
+      </p>
+
+      <div class="feature-box">
+        <div class="feature">
+          <i class="fas fa-camera"></i>
+          <span>Vision-Based AQI Detection</span>
+        </div>
+
+        <div class="feature">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Live Geolocation Tracking</span>
+        </div>
+
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>Deep Learning Prediction</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-right">
+
+      <div class="login-card">
+
+        <h2>Get Started</h2>
+
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="name" placeholder="Full Name">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email Address">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Password">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-location-dot"></i>
+          <input type="text" id="location" placeholder="Capture Location">
+        </div>
+
+        <button class="location-btn" onclick="getLocation()">
+          Detect My Location
+        </button>
+
+        <button class="login-btn" onclick="login()">
+          Continue
+        </button>
+
+        <p id="error"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+  <div class="dashboard-container">
+
+    <div class="upload-card">
+      <h2>Analyze Environment</h2>
+
+      <input type="file" accept="image/*" capture="environment" id="imageInput">
+
+      <img id="preview" />
+
+      <button onclick="analyze()">Analyze AQI</button>
+    </div>
+
+    <div id="loader" class="loader hidden"></div>
+
+    <div class="result-card hidden" id="result">
+      <h2>Air Quality Report</h2>
+
+      <div class="circle">
+        <h1 id="aqiValue">0</h1>
+      </div>
+
+      <h3 id="aqiStatus">Moderate</h3>
+
+      <p id="healthText">
+        Air quality is acceptable but may affect sensitive individuals.
+      </p>
+    </div>
+
+    <div class="result-card hidden" id="result">
+
+      <h2>Air Quality Report</h2>
+    
+      <div class="circle">
+        <h1 id="aqiValue">0</h1>
+      </div>
+    
+      <h3 id="aqiStatus">Status</h3>
+    
+      <p id="healthText">
+        AQI health suggestions will appear here.
+      </p>
+    
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="page">
+  <div class="about-container">
+
+    <h1>About Haze-Analyzer</h1>
+
+    <p>
+      Haze-Analyzer is an AI-powered vision-based Air Quality Index
+      estimation platform designed to predict air pollution levels
+      using street-level images captured from mobile devices.
+    </p>
+
+    <div class="about-grid">
+
+      <div class="about-card">
+        <i class="fas fa-camera"></i>
+        <h3>Vision-Based Detection</h3>
+        <p>
+          Uses computer vision and deep learning to analyze haze,
+          visibility, and environmental patterns from images.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <i class="fas fa-brain"></i>
+        <h3>AI Powered</h3>
+        <p>
+          Integrates CNN-based machine learning models trained on
+          AQI datasets such as PM25Vision.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <i class="fas fa-globe"></i>
+        <h3>Real-Time Monitoring</h3>
+        <p>
+          Enables low-cost and scalable pollution monitoring in
+          areas with limited sensor infrastructure.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="page">
+  <div class="card">
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Message"></textarea>
+    <button>Send</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
